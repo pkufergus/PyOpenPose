@@ -30,7 +30,7 @@ struct OpenPoseWrapper::PrivateData
                 const std::string &modelFolder, int numScales, float scaleGap, float blendAlpha,
                 const std::vector<op::HeatMapType> &heatMapTypes, const op::ScaleMode &heatMapScale, int gpuId):
             poseExtractorCaffe{poseModel, modelFolder, gpuId, heatMapTypes, heatMapScale},
-            poseRenderer{poseModel, nullptr, 0.05, true, blendAlpha},
+            poseRenderer{poseModel, 0.05, true, blendAlpha},
             scaleAndSizeExtractor{netInputSize, outputSize, numScales, scaleGap},
 
             faceExtractor{netInputSizeFaceAndHands, netInputSizeFaceAndHands, modelFolder, gpuId, heatMapTypes, heatMapScale},
@@ -47,15 +47,15 @@ struct OpenPoseWrapper::PrivateData
     op::CvMatToOpOutput cvMatToOpOutput;
     op::PoseExtractorCaffe poseExtractorCaffe;
 
-    op::PoseGpuRenderer poseRenderer;
+    op::PoseCpuRenderer poseRenderer;
 
     op::FaceExtractorCaffe faceExtractor;
     op::FaceDetector faceDetector;
-    op::FaceGpuRenderer faceRenderer;
+    op::FaceCpuRenderer faceRenderer;
 
     op::HandExtractorCaffe handExtractor;
     op::HandDetector handDetector;
-    op::HandGpuRenderer handRenderer;
+    op::HandCpuRenderer handRenderer;
 
     op::OpOutputToCvMat opOutputToCvMat;
     op::ScaleAndSizeExtractor scaleAndSizeExtractor;

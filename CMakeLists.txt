@@ -46,7 +46,7 @@ if(NOT WIN32) # compile with fPIC when building static with gcc
 endif()
 
 
-find_package(CUDA REQUIRED)
+#find_package(CUDA REQUIRED)
 find_package(OpenCV 3 REQUIRED)
 find_package(Doxygen)
 
